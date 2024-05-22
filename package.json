@@ -1,0 +1,35 @@
+{
+  "name": "@genshin-toolkit/parser",
+  "version": "1.0.0",
+  "description": "A small library to parse and validate Genshin Impact game data.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshwinrio/genshin-impact-gamedata-schema.git"
+  },
+  "keywords": [
+    "genshin",
+    "impact",
+    "game",
+    "hoyoverse",
+    "mihoyo",
+    "anime"
+  ],
+  "author": "Rio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eshwinrio/genshin-impact-gamedata-schema/issues"
+  },
+  "homepage": "https://github.com/eshwinrio/genshin-impact-gamedata-schema#readme",
+  "devDependencies": {
+    "@types/node": "20.12.12",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}
