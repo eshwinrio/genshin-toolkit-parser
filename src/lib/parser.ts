@@ -1,7 +1,9 @@
 import { readFile } from "fs";
-import { GameData, MyCharacters, TravelerRole } from "./gamedata-schema";
-import { HAR } from "./har-schema";
-import { MhyResponse } from "./mhy-internal-schema";
+import { AvatarList } from "./avatar.module";
+import { GameData } from "./gamedata-schema";
+import { HAR } from "./har.module";
+import { MhyResponse } from "./mhyresponse.module";
+import { Role } from "./role.module";
 
 export const GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api"
 
@@ -31,6 +33,11 @@ export class FileDataProvider implements DataProvider {
     }
 }
 
+export interface LoadFromHarOptions {
+    readonly hoyolabApi?: string;
+    
+}
+
 /**
  * Load game data from HAR file
  * @param source The data source of the HAR file
@@ -57,7 +64,7 @@ export async function loadFromHar(source: DataProvider): Promise<GameData> {
     const rawTravelerInfo = basicInfoEntry?.response?.content?.text
         ? MhyResponse.parse(JSON.parse(basicInfoEntry.response.content.text))
         : null;
-    const role = rawTravelerInfo ? TravelerRole.parse(rawTravelerInfo.data.role) : null;
+    const role = rawTravelerInfo ? Role.parse(rawTravelerInfo.data.role) : null;
 
     // Stage 4: Extract character data
     const characterData = filteredEntries.find((entry) =>
@@ -66,7 +73,7 @@ export async function loadFromHar(source: DataProvider): Promise<GameData> {
     const rawCharacterData = characterData?.response?.content?.text
         ? MhyResponse.parse(JSON.parse(characterData.response.content.text))
         : null;
-    const avatars = rawCharacterData ? MyCharacters.parse(rawCharacterData.data.avatars) : null;
+    const avatars = rawCharacterData ? AvatarList.parse(rawCharacterData.data.avatars) : null;
     
     return GameData.parse({ role, avatars });
 }

@@ -25,6 +25,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Parser = exports.MhyInternal = exports.Har = exports.GameData = void 0;
 exports.GameData = __importStar(require("./lib/gamedata-schema"));
-exports.Har = __importStar(require("./lib/har-schema"));
-exports.MhyInternal = __importStar(require("./lib/mhy-internal-schema"));
+exports.Har = __importStar(require("./lib/har.module"));
+exports.MhyInternal = __importStar(require("./lib/mhyresponse.module"));
 exports.Parser = __importStar(require("./lib/parser"));

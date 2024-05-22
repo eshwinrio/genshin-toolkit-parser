@@ -12,8 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromHar = exports.FileDataProvider = exports.BufferDataProvider = exports.GAME_RECORD_API_BASEURL = void 0;
 const fs_1 = require("fs");
 const gamedata_schema_1 = require("./gamedata-schema");
-const har_schema_1 = require("./har-schema");
-const mhy_internal_schema_1 = require("./mhy-internal-schema");
+const har_module_1 = require("./har.module");
+const mhyresponse_module_1 = require("./mhyresponse.module");
+const role_module_1 = require("./role.module");
+const avatar_module_1 = require("./avatar.module");
 exports.GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api";
 class BufferDataProvider {
     constructor(buffer) {
@@ -50,7 +52,7 @@ function loadFromHar(source) {
         // Stage 1: Parse HAR file
         const buffer = yield source.load();
         const harData = JSON.parse(buffer.toString('utf-8'));
-        const parsedHar = har_schema_1.HAR.parse(harData);
+        const parsedHar = har_module_1.HAR.parse(harData);
         // Stage 2: Filter entries
         if (!parsedHar.log) {
             throw new Error("No http log found in HAR file");
@@ -59,15 +61,15 @@ function loadFromHar(source) {
         // Stage 3: Extract traveler info
         const basicInfoEntry = filteredEntries.find((entry) => { var _a, _b; return (_b = (_a = entry.request) === null || _a === void 0 ? void 0 : _a.url) === null || _b === void 0 ? void 0 : _b.startsWith(exports.GAME_RECORD_API_BASEURL + "/index"); });
         const rawTravelerInfo = ((_e = (_d = basicInfoEntry === null || basicInfoEntry === void 0 ? void 0 : basicInfoEntry.response) === null || _d === void 0 ? void 0 : _d.content) === null || _e === void 0 ? void 0 : _e.text)
-            ? mhy_internal_schema_1.MhyResponse.parse(JSON.parse(basicInfoEntry.response.content.text))
+            ? mhyresponse_module_1.MhyResponse.parse(JSON.parse(basicInfoEntry.response.content.text))
             : null;
-        const role = rawTravelerInfo ? gamedata_schema_1.TravelerRole.parse(rawTravelerInfo.data.role) : null;
+        const role = rawTravelerInfo ? role_module_1.Role.parse(rawTravelerInfo.data.role) : null;
         // Stage 4: Extract character data
         const characterData = filteredEntries.find((entry) => { var _a, _b; return (_b = (_a = entry.request) === null || _a === void 0 ? void 0 : _a.url) === null || _b === void 0 ? void 0 : _b.startsWith(exports.GAME_RECORD_API_BASEURL + "/character"); });
         const rawCharacterData = ((_g = (_f = characterData === null || characterData === void 0 ? void 0 : characterData.response) === null || _f === void 0 ? void 0 : _f.content) === null || _g === void 0 ? void 0 : _g.text)
-            ? mhy_internal_schema_1.MhyResponse.parse(JSON.parse(characterData.response.content.text))
+            ? mhyresponse_module_1.MhyResponse.parse(JSON.parse(characterData.response.content.text))
             : null;
-        const avatars = rawCharacterData ? gamedata_schema_1.MyCharacters.parse(rawCharacterData.data.avatars) : null;
+        const avatars = rawCharacterData ? avatar_module_1.AvatarList.parse(rawCharacterData.data.avatars) : null;
         return gamedata_schema_1.GameData.parse({ role, avatars });
     });
 }

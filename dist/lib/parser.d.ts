@@ -14,6 +14,9 @@ export declare class FileDataProvider implements DataProvider {
     constructor(path: string);
     load(): Promise<Buffer>;
 }
+export interface LoadFromHarOptions {
+    readonly hoyolabApi?: string;
+}
 /**
  * Load game data from HAR file
  * @param source The data source of the HAR file
