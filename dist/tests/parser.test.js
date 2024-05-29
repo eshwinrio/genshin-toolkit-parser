@@ -24,8 +24,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
-const parser_1 = require("../lib/parser");
 const node_test_1 = __importStar(require("node:test"));
+const parser_1 = require("../lib/parser");
 (0, node_test_1.describe)("DataProvider tests for HAR", { concurrency: true, skip: !process.env.FS_PATH_TO_HAR }, (_suiteContext) => {
     (0, node_test_1.default)("FileDataProvider", (_testContext) => {
         const provider = new parser_1.FileDataProvider(process.env.FS_PATH_TO_HAR);

@@ -1,120 +1,104 @@
 import { z } from "zod";
 export declare const AvatarBase: z.ZodObject<{
-    image: z.ZodString;
+    image: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
     element: z.ZodEnum<["Anemo", "Cryo", "Dendro", "Electro", "Geo", "Hydro", "Pyro"]>;
     rarity: z.ZodNumber;
     constellations: z.ZodArray<z.ZodObject<{
-        id: z.ZodOptional<z.ZodNumber>;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         effect: z.ZodString;
-        is_actived: z.ZodBoolean;
+        is_actived: z.ZodDefault<z.ZodBoolean>;
         pos: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }, {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }>, "many">;
     costumes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodNumber;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }[];
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
 }, {
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }[];
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
 }>;
 export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
-    image: z.ZodString;
+    image: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
     element: z.ZodEnum<["Anemo", "Cryo", "Dendro", "Electro", "Geo", "Hydro", "Pyro"]>;
     rarity: z.ZodNumber;
     constellations: z.ZodArray<z.ZodObject<{
-        id: z.ZodOptional<z.ZodNumber>;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         effect: z.ZodString;
-        is_actived: z.ZodBoolean;
+        is_actived: z.ZodDefault<z.ZodBoolean>;
         pos: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }, {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }>, "many">;
     costumes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodNumber;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }>, "many">>;
 }, {
     icon: z.ZodOptional<z.ZodString>;
@@ -123,43 +107,42 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
     level: z.ZodNumber;
     weapon: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         type: z.ZodNumber;
         rarity: z.ZodNumber;
         type_name: z.ZodEnum<["Claymore", "Polearm", "Sword", "Bow", "Catalyst"]>;
         desc: z.ZodOptional<z.ZodString>;
     }, {
-        level: z.ZodNumber;
-        promote_level: z.ZodNumber;
-        affix_level: z.ZodNumber;
+        level: z.ZodDefault<z.ZodNumber>;
+        promote_level: z.ZodDefault<z.ZodNumber>;
+        affix_level: z.ZodDefault<z.ZodNumber>;
     }>, "strip", z.ZodTypeAny, {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
+        level: number;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
         promote_level: number;
         affix_level: number;
+        icon?: string | undefined;
         desc?: string | undefined;
     }, {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
-        promote_level: number;
-        affix_level: number;
+        icon?: string | undefined;
+        level?: number | undefined;
         desc?: string | undefined;
+        promote_level?: number | undefined;
+        affix_level?: number | undefined;
     }>>;
     reliquaries: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         pos: z.ZodNumber;
         rarity: z.ZodNumber;
         set: z.ZodObject<{
-            id: z.ZodNumber;
             name: z.ZodString;
             affixes: z.ZodArray<z.ZodObject<{
                 activation_number: z.ZodNumber;
@@ -173,14 +156,12 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
             }>, "many">;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         }, {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
@@ -188,180 +169,166 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
         }>;
         pos_name: z.ZodString;
     }, {
-        level: z.ZodNumber;
+        level: z.ZodDefault<z.ZodNumber>;
     }>, "strip", z.ZodTypeAny, {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
+        level: number;
         pos_name: string;
+        icon?: string | undefined;
     }, {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
         pos_name: string;
+        icon?: string | undefined;
+        level?: number | undefined;
     }>, "many">>;
-    actived_constellation_num: z.ZodNumber;
-    external: z.ZodAny;
+    actived_constellation_num: z.ZodDefault<z.ZodNumber>;
+    external: z.ZodOptional<z.ZodAny>;
 }>, "strip", z.ZodTypeAny, {
-    level: number;
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }[];
     fetter: number;
+    level: number;
     actived_constellation_num: number;
     icon?: string | undefined;
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
     weapon?: {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
+        level: number;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
         promote_level: number;
         affix_level: number;
+        icon?: string | undefined;
         desc?: string | undefined;
     } | undefined;
     reliquaries?: {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
+        level: number;
         pos_name: string;
+        icon?: string | undefined;
     }[] | undefined;
     external?: any;
 }, {
-    level: number;
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }[];
     fetter: number;
-    actived_constellation_num: number;
+    level: number;
     icon?: string | undefined;
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
     weapon?: {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
-        promote_level: number;
-        affix_level: number;
+        icon?: string | undefined;
+        level?: number | undefined;
         desc?: string | undefined;
+        promote_level?: number | undefined;
+        affix_level?: number | undefined;
     } | undefined;
     reliquaries?: {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
         pos_name: string;
+        icon?: string | undefined;
+        level?: number | undefined;
     }[] | undefined;
+    actived_constellation_num?: number | undefined;
     external?: any;
 }>;
 export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
-    image: z.ZodString;
+    image: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
     element: z.ZodEnum<["Anemo", "Cryo", "Dendro", "Electro", "Geo", "Hydro", "Pyro"]>;
     rarity: z.ZodNumber;
     constellations: z.ZodArray<z.ZodObject<{
-        id: z.ZodOptional<z.ZodNumber>;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         effect: z.ZodString;
-        is_actived: z.ZodBoolean;
+        is_actived: z.ZodDefault<z.ZodBoolean>;
         pos: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }, {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }>, "many">;
     costumes: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        id: z.ZodNumber;
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }, {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }>, "many">>;
 }, {
     icon: z.ZodOptional<z.ZodString>;
@@ -370,43 +337,42 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
     level: z.ZodNumber;
     weapon: z.ZodOptional<z.ZodObject<z.objectUtil.extendShape<{
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         type: z.ZodNumber;
         rarity: z.ZodNumber;
         type_name: z.ZodEnum<["Claymore", "Polearm", "Sword", "Bow", "Catalyst"]>;
         desc: z.ZodOptional<z.ZodString>;
     }, {
-        level: z.ZodNumber;
-        promote_level: z.ZodNumber;
-        affix_level: z.ZodNumber;
+        level: z.ZodDefault<z.ZodNumber>;
+        promote_level: z.ZodDefault<z.ZodNumber>;
+        affix_level: z.ZodDefault<z.ZodNumber>;
     }>, "strip", z.ZodTypeAny, {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
+        level: number;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
         promote_level: number;
         affix_level: number;
+        icon?: string | undefined;
         desc?: string | undefined;
     }, {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
-        promote_level: number;
-        affix_level: number;
+        icon?: string | undefined;
+        level?: number | undefined;
         desc?: string | undefined;
+        promote_level?: number | undefined;
+        affix_level?: number | undefined;
     }>>;
     reliquaries: z.ZodOptional<z.ZodArray<z.ZodObject<z.objectUtil.extendShape<{
         name: z.ZodString;
-        icon: z.ZodString;
+        icon: z.ZodOptional<z.ZodString>;
         pos: z.ZodNumber;
         rarity: z.ZodNumber;
         set: z.ZodObject<{
-            id: z.ZodNumber;
             name: z.ZodString;
             affixes: z.ZodArray<z.ZodObject<{
                 activation_number: z.ZodNumber;
@@ -420,14 +386,12 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
             }>, "many">;
         }, "strip", z.ZodTypeAny, {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         }, {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
@@ -435,139 +399,131 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
         }>;
         pos_name: z.ZodString;
     }, {
-        level: z.ZodNumber;
+        level: z.ZodDefault<z.ZodNumber>;
     }>, "strip", z.ZodTypeAny, {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
+        level: number;
         pos_name: string;
+        icon?: string | undefined;
     }, {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
         pos_name: string;
+        icon?: string | undefined;
+        level?: number | undefined;
     }>, "many">>;
-    actived_constellation_num: z.ZodNumber;
-    external: z.ZodAny;
+    actived_constellation_num: z.ZodDefault<z.ZodNumber>;
+    external: z.ZodOptional<z.ZodAny>;
 }>, "strip", z.ZodTypeAny, {
-    level: number;
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
         is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
     }[];
     fetter: number;
+    level: number;
     actived_constellation_num: number;
     icon?: string | undefined;
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
     weapon?: {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
+        level: number;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
         promote_level: number;
         affix_level: number;
+        icon?: string | undefined;
         desc?: string | undefined;
     } | undefined;
     reliquaries?: {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
+        level: number;
         pos_name: string;
+        icon?: string | undefined;
     }[] | undefined;
     external?: any;
 }, {
-    level: number;
-    image: string;
     name: string;
     element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
     constellations: {
         name: string;
-        icon: string;
         effect: string;
-        is_actived: boolean;
         pos: number;
-        id?: number | undefined;
+        icon?: string | undefined;
+        is_actived?: boolean | undefined;
     }[];
     fetter: number;
-    actived_constellation_num: number;
+    level: number;
     icon?: string | undefined;
+    image?: string | undefined;
     costumes?: {
         name: string;
-        id: number;
-        icon: string;
+        icon?: string | undefined;
     }[] | undefined;
     weapon?: {
-        level: number;
-        type: number;
         name: string;
+        type: number;
         rarity: number;
-        icon: string;
         type_name: "Claymore" | "Polearm" | "Sword" | "Bow" | "Catalyst";
-        promote_level: number;
-        affix_level: number;
+        icon?: string | undefined;
+        level?: number | undefined;
         desc?: string | undefined;
+        promote_level?: number | undefined;
+        affix_level?: number | undefined;
     } | undefined;
     reliquaries?: {
-        level: number;
+        name: string;
+        pos: number;
+        rarity: number;
         set: {
             name: string;
-            id: number;
             affixes: {
                 effect: string;
                 activation_number: number;
             }[];
         };
-        name: string;
-        rarity: number;
-        icon: string;
-        pos: number;
         pos_name: string;
+        icon?: string | undefined;
+        level?: number | undefined;
     }[] | undefined;
+    actived_constellation_num?: number | undefined;
     external?: any;
 }>, "many">;
 export type AvatarBase = z.infer<typeof AvatarBase>;

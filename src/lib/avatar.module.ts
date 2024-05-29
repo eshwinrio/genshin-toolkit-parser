@@ -6,7 +6,7 @@ import { Reliquary } from "./reliquary.module";
 import { Weapon } from "./weapon.module";
 
 export const AvatarBase = z.object({
-  image: z.string().url(),
+  image: z.string().url().optional(),
   name: z.string(),
   element: Element,
   rarity: z.number().gte(1).lte(5),
@@ -21,8 +21,8 @@ export const Avatar = AvatarBase.extend({
   level: z.number().gte(1).lte(90),
   weapon: Weapon.optional(),
   reliquaries: z.array(Reliquary).optional(),
-  actived_constellation_num: z.number(),
-  external: z.any()
+  actived_constellation_num: z.number().default(0),
+  external: z.any().optional(),
 });
 
 export const AvatarList = z.array(Avatar);

@@ -1,15 +1,12 @@
 import { z } from "zod";
 export declare const Costume: z.ZodObject<{
-    id: z.ZodNumber;
     name: z.ZodString;
-    icon: z.ZodString;
+    icon: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    id: number;
-    icon: string;
+    icon?: string | undefined;
 }, {
     name: string;
-    id: number;
-    icon: string;
+    icon?: string | undefined;
 }>;
 export type Costume = z.infer<typeof Costume>;

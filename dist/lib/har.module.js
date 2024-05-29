@@ -1,27 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HAR = exports.HarEntry = exports.ResponseSchema = exports.RequestSchema = exports.PageSchema = exports.PageTimingsSchema = exports.BrowserSchema = exports.CreatorSchema = exports.QueryStringSchema = exports.CookieSchema = exports.HeaderSchema = void 0;
+exports.HAR = exports.HarEntry = exports.ResponseSchema = exports.RequestSchema = exports.PageSchema = exports.PageTimingsSchema = exports.BrowserSchema = exports.CreatorSchema = exports.NameVersionSchema = exports.QueryStringSchema = exports.CookieSchema = exports.HeaderSchema = exports.NameValueSchema = void 0;
 const zod_1 = require("zod");
-exports.HeaderSchema = zod_1.z.object({
+exports.NameValueSchema = zod_1.z.object({
     name: zod_1.z.string(),
     value: zod_1.z.string(),
 });
-exports.CookieSchema = zod_1.z.object({
+exports.HeaderSchema = exports.NameValueSchema;
+exports.CookieSchema = exports.NameValueSchema;
+exports.QueryStringSchema = exports.NameValueSchema;
+exports.NameVersionSchema = zod_1.z.object({
     name: zod_1.z.string(),
-    value: zod_1.z.string(),
+    version: zod_1.z.string(),
 });
-exports.QueryStringSchema = zod_1.z.object({
-    name: zod_1.z.string(),
-    value: zod_1.z.string(),
-});
-exports.CreatorSchema = zod_1.z.object({
-    name: zod_1.z.string().optional(),
-    version: zod_1.z.string().optional(),
-});
-exports.BrowserSchema = zod_1.z.object({
-    name: zod_1.z.string().optional(),
-    version: zod_1.z.string().optional(),
-});
+exports.CreatorSchema = exports.NameVersionSchema;
+exports.BrowserSchema = exports.NameVersionSchema;
 exports.PageTimingsSchema = zod_1.z.object({});
 exports.PageSchema = zod_1.z.object({
     startedDateTime: zod_1.z.string().optional(),

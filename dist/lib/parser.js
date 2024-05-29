@@ -9,14 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loadFromHar = exports.FileDataProvider = exports.BufferDataProvider = exports.GAME_RECORD_API_BASEURL = void 0;
+exports.loadFromHar = exports.FileDataProvider = exports.BufferDataProvider = exports.StringDataProvider = exports.GAME_RECORD_API_BASEURL = void 0;
 const fs_1 = require("fs");
+const avatar_module_1 = require("./avatar.module");
 const gamedata_schema_1 = require("./gamedata-schema");
 const har_module_1 = require("./har.module");
 const mhyresponse_module_1 = require("./mhyresponse.module");
 const role_module_1 = require("./role.module");
-const avatar_module_1 = require("./avatar.module");
 exports.GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api";
+/**
+ * Data provider that loads data from a serialized string object.
+ */
+class StringDataProvider {
+    constructor(data) {
+        this.data = data;
+    }
+    load() {
+        return Promise.resolve(Buffer.from(this.data));
+    }
+}
+exports.StringDataProvider = StringDataProvider;
+/**
+ * Data provider that loads data from a buffer.
+ */
 class BufferDataProvider {
     constructor(buffer) {
         this.buffer = buffer;
@@ -26,6 +41,9 @@ class BufferDataProvider {
     }
 }
 exports.BufferDataProvider = BufferDataProvider;
+/**
+ * Data provider that loads data from a HAR file.
+ */
 class FileDataProvider {
     constructor(path) {
         this.path = path;

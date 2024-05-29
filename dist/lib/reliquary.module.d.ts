@@ -10,7 +10,6 @@ export declare const ReliquaryAffix: z.ZodObject<{
     activation_number: number;
 }>;
 export declare const ReliquarySet: z.ZodObject<{
-    id: z.ZodNumber;
     name: z.ZodString;
     affixes: z.ZodArray<z.ZodObject<{
         activation_number: z.ZodNumber;
@@ -24,14 +23,12 @@ export declare const ReliquarySet: z.ZodObject<{
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    id: number;
     affixes: {
         effect: string;
         activation_number: number;
     }[];
 }, {
     name: string;
-    id: number;
     affixes: {
         effect: string;
         activation_number: number;
@@ -39,11 +36,10 @@ export declare const ReliquarySet: z.ZodObject<{
 }>;
 export declare const ReliquaryBase: z.ZodObject<{
     name: z.ZodString;
-    icon: z.ZodString;
+    icon: z.ZodOptional<z.ZodString>;
     pos: z.ZodNumber;
     rarity: z.ZodNumber;
     set: z.ZodObject<{
-        id: z.ZodNumber;
         name: z.ZodString;
         affixes: z.ZodArray<z.ZodObject<{
             activation_number: z.ZodNumber;
@@ -57,14 +53,12 @@ export declare const ReliquaryBase: z.ZodObject<{
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     }, {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
@@ -72,41 +66,38 @@ export declare const ReliquaryBase: z.ZodObject<{
     }>;
     pos_name: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    name: string;
+    pos: number;
+    rarity: number;
     set: {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     };
-    name: string;
-    rarity: number;
-    icon: string;
-    pos: number;
     pos_name: string;
+    icon?: string | undefined;
 }, {
+    name: string;
+    pos: number;
+    rarity: number;
     set: {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     };
-    name: string;
-    rarity: number;
-    icon: string;
-    pos: number;
     pos_name: string;
+    icon?: string | undefined;
 }>;
 export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
     name: z.ZodString;
-    icon: z.ZodString;
+    icon: z.ZodOptional<z.ZodString>;
     pos: z.ZodNumber;
     rarity: z.ZodNumber;
     set: z.ZodObject<{
-        id: z.ZodNumber;
         name: z.ZodString;
         affixes: z.ZodArray<z.ZodObject<{
             activation_number: z.ZodNumber;
@@ -120,14 +111,12 @@ export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     }, {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
@@ -135,37 +124,35 @@ export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
     }>;
     pos_name: z.ZodString;
 }, {
-    level: z.ZodNumber;
+    level: z.ZodDefault<z.ZodNumber>;
 }>, "strip", z.ZodTypeAny, {
-    level: number;
+    name: string;
+    pos: number;
+    rarity: number;
     set: {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     };
-    name: string;
-    rarity: number;
-    icon: string;
-    pos: number;
+    level: number;
     pos_name: string;
+    icon?: string | undefined;
 }, {
-    level: number;
+    name: string;
+    pos: number;
+    rarity: number;
     set: {
         name: string;
-        id: number;
         affixes: {
             effect: string;
             activation_number: number;
         }[];
     };
-    name: string;
-    rarity: number;
-    icon: string;
-    pos: number;
     pos_name: string;
+    icon?: string | undefined;
+    level?: number | undefined;
 }>;
 export type ReliquaryAffix = z.infer<typeof ReliquaryAffix>;
 export type ReliquarySet = z.infer<typeof ReliquarySet>;

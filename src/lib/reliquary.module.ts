@@ -6,14 +6,13 @@ export const ReliquaryAffix = z.object({
 });
 
 export const ReliquarySet = z.object({
-  id: z.number(),
   name: z.string(),
   affixes: z.array(ReliquaryAffix),
 });
 
 export const ReliquaryBase = z.object({
   name: z.string(),
-  icon: z.string().url(),
+  icon: z.string().url().optional(),
   pos: z.number(),
   rarity: z.number(),
   set: ReliquarySet,
@@ -21,7 +20,7 @@ export const ReliquaryBase = z.object({
 });
 
 export const Reliquary = ReliquaryBase.extend({
-  level: z.number().min(0).max(20),
+  level: z.number().min(0).max(20).default(0),
 });
 
 export type ReliquaryAffix = z.infer<typeof ReliquaryAffix>;
