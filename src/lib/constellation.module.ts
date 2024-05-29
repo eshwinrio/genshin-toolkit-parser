@@ -1,11 +1,10 @@
 import { z } from "zod";
 
 export const Constellation = z.object({
-  id: z.number().optional(),
   name: z.string(),
-  icon: z.string().url(),
+  icon: z.string().url().optional(),
   effect: z.string(),
-  is_actived: z.boolean(),
+  is_actived: z.boolean().default(false),
   pos: z.number(),
 });
 

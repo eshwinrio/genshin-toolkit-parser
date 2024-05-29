@@ -1,29 +1,19 @@
 import { z } from "zod";
 
-export const HeaderSchema = z.object({
+export const NameValueSchema = z.object({
   name: z.string(),
   value: z.string(),
 });
+export const HeaderSchema = NameValueSchema
+export const CookieSchema = NameValueSchema;
+export const QueryStringSchema = NameValueSchema;
 
-export const CookieSchema = z.object({
+export const NameVersionSchema = z.object({
   name: z.string(),
-  value: z.string(),
+  version: z.string(),
 });
-
-export const QueryStringSchema = z.object({
-  name: z.string(),
-  value: z.string(),
-});
-
-export const CreatorSchema = z.object({
-  name: z.string().optional(),
-  version: z.string().optional(),
-});
-
-export const BrowserSchema = z.object({
-  name: z.string().optional(),
-  version: z.string().optional(),
-});
+export const CreatorSchema = NameVersionSchema;
+export const BrowserSchema = NameVersionSchema;
 
 export const PageTimingsSchema = z.object({});
 
@@ -85,6 +75,7 @@ export const HAR = z.object({
 });
 
 
+export type KeyValueSchema = z.infer<typeof NameValueSchema>;
 export type HeaderSchema = z.infer<typeof HeaderSchema>;
 export type CookieSchema = z.infer<typeof CookieSchema>;
 export type QueryStringSchema = z.infer<typeof QueryStringSchema>;

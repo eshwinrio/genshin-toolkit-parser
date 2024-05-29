@@ -1,24 +1,21 @@
 import { z } from "zod";
 export declare const Constellation: z.ZodObject<{
-    id: z.ZodOptional<z.ZodNumber>;
     name: z.ZodString;
-    icon: z.ZodString;
+    icon: z.ZodOptional<z.ZodString>;
     effect: z.ZodString;
-    is_actived: z.ZodBoolean;
+    is_actived: z.ZodDefault<z.ZodBoolean>;
     pos: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    icon: string;
     effect: string;
     is_actived: boolean;
     pos: number;
-    id?: number | undefined;
+    icon?: string | undefined;
 }, {
     name: string;
-    icon: string;
     effect: string;
-    is_actived: boolean;
     pos: number;
-    id?: number | undefined;
+    icon?: string | undefined;
+    is_actived?: boolean | undefined;
 }>;
 export type Constellation = z.infer<typeof Constellation>;
