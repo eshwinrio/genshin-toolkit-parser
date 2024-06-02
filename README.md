@@ -22,10 +22,14 @@ There are 2 data providers for specific use cases:
 - `BufferDataProvider` If you have the HAR `Buffer` at hand, you can use this `DataProvider` instead.
 
   ```ts
-  import { Parser } from "@genshin-toolkit/parser";
+  import {
+    BufferDataProvider,
+    FileDataProvider,
+    loadFromHar,
+  } from "@genshin-toolkit/parser";
 
-  const fileDataProvider = new Parser.FileDataProvider("..path-to.har");
-  const bufferDataProvider = new Parser.BufferDataProvider(buffer);
+  const fileDataProvider = new FileDataProvider("..path-to.har");
+  const bufferDataProvider = new BufferDataProvider(buffer);
   ```
 
 2. Pass the `DataProvider` instance to the `loadFromHar` function which returns a complete `GameData` model compiled by `zod`.
@@ -50,10 +54,10 @@ Below are the examples of loading data from HAR for two different use-cases:
 ### Parsing data from a local file
 
 ```ts
-import { Parser } from "@genshin-toolkit/parser";
+import { FileDataProvider, loadFromHar } from "@genshin-toolkit/parser";
 
-const provider = new Parser.FileDataProvider("/home/path/to.har");
-Parser.loadFromHar(provider).then((data) => {
+const provider = new FileDataProvider("/home/path/to.har");
+loadFromHar(provider).then((data) => {
   console.table(
     data.avatars.map((avatar) => ({
       character: avatar.name,
@@ -70,7 +74,7 @@ Parser.loadFromHar(provider).then((data) => {
 If you want to do some preprocessing on the file buffer, use this approach:
 
 ```ts
-import { Parser } from "@genshin-toolkit/parser";
+import { BufferDataProvider, loadFromHar } from "@genshin-toolkit/parser";
 
 readFile("/home/path/to.har", (err, data) => {
   if (err) throw err;
