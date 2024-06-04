@@ -1,9 +1,10 @@
-import { readFile, mkdtemp, rm } from "fs";
+import { mkdtemp, readFile, rm } from "fs";
+import assert from "node:assert";
 import { after, before, describe, it } from "node:test";
-import { BufferDataProvider, FileDataProvider, GameDataFactory } from "../lib/parser";
 import { tmpdir } from "os";
 import { sep } from "path";
-import assert from "node:assert";
+import { BufferDataProvider, FileDataProvider } from "../lib/data-provider";
+import { loadFromHar } from "../lib/parser";
 
 describe(
     "DataProvider tests for HAR",
@@ -34,8 +35,8 @@ describe(
 
         it("FileDataProvider", async (_testContext) => {
             const provider = new FileDataProvider(process.env.FS_PATH_TO_HAR!);
-            const gameDataFactory = await GameDataFactory.loadFromHar(provider);
-            assert.ok(gameDataFactory.gameData);
+            const gameData = await loadFromHar(provider);
+            assert.ok(gameData);
         });
 
         it("BufferDataProvider", (_testContext) => {
@@ -43,21 +44,12 @@ describe(
                 readFile(process.env.FS_PATH_TO_HAR!, (err, data) => {
                     if (err) reject(err);
                     const provider = new BufferDataProvider(data);
-                    GameDataFactory.loadFromHar(provider).then(gameDataFactory => {
-                        assert.ok(gameDataFactory.gameData);
+                    loadFromHar(provider).then(gameData => {
+                        assert.ok(gameData);
                         resolve();
                     });
                 });
             });
-        });
-
-        it("File output", async (_testContext) => {
-            const provider = new FileDataProvider(process.env.FS_PATH_TO_HAR!);
-            const gameDataFactory = await GameDataFactory.loadFromHar(provider);
-            await gameDataFactory.saveToFile(temporaryDirectory + "output.json");
-            const provider2 = new FileDataProvider(temporaryDirectory + "output.json");
-            const gameDataFactory2 = await GameDataFactory.loadFromFile(provider2);
-            assert.ok(gameDataFactory2.gameData);
         });
     }
 )

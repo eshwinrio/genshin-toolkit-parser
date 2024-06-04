@@ -4,7 +4,9 @@
   "description": "A small library to parse and validate Genshin Impact game data.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build:node": "tsc --project tsconfig.node.json",
+    "build:web": "tsc --project tsconfig.web.json",
+    "build": "npm run build:node && npm run build:web",
     "test": "node --test"
   },
   "repository": {
