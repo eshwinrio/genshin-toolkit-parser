@@ -22,9 +22,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Parser = exports.MhyInternal = exports.Har = exports.GameData = void 0;
+exports.MhyInternal = exports.Har = exports.GameData = void 0;
 exports.GameData = __importStar(require("./lib/gamedata-schema"));
 exports.Har = __importStar(require("./lib/har.module"));
 exports.MhyInternal = __importStar(require("./lib/mhyresponse.module"));
-exports.Parser = __importStar(require("./lib/parser"));
+__exportStar(require("./lib/parser"), exports);
