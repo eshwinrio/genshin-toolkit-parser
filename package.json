@@ -1,6 +1,6 @@
 {
   "name": "@genshin-toolkit/parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small library to parse and validate Genshin Impact game data.",
   "main": "dist/index.js",
   "scripts": {
