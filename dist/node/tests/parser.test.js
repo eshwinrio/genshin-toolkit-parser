@@ -10,7 +10,7 @@ const os_1 = require("os");
 const path_1 = require("path");
 const data_provider_1 = require("../lib/data-provider");
 const parser_1 = require("../lib/parser");
-const data_provider_node_1 = require("lib/data-provider-node");
+const data_provider_node_1 = require("../lib/data-provider-node");
 (0, node_test_1.describe)("DataProvider tests for HAR", { concurrency: true, skip: !process.env.FS_PATH_TO_HAR }, (_suiteContext) => {
     let temporaryDirectory;
     (0, node_test_1.before)(async (_testContext) => {

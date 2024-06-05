@@ -5,7 +5,7 @@ import { tmpdir } from "os";
 import { sep } from "path";
 import { BufferDataProvider } from "../lib/data-provider";
 import { loadFromHar } from "../lib/parser";
-import { FileDataProvider } from "lib/data-provider-node";
+import { FileDataProvider } from "../lib/data-provider-node";
 
 describe(
     "DataProvider tests for HAR",
