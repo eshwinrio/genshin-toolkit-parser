@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FileDataProvider = exports.BufferDataProvider = exports.StringDataProvider = void 0;
-const fs_1 = require("fs");
+exports.BufferDataProvider = exports.StringDataProvider = void 0;
 /**
  * Data provider that loads data from a serialized string object.
  */
@@ -26,22 +25,3 @@ class BufferDataProvider {
     }
 }
 exports.BufferDataProvider = BufferDataProvider;
-/**
- * Data provider that loads data from a HAR file.
- */
-class FileDataProvider {
-    constructor(path) {
-        this.path = path;
-    }
-    load() {
-        return new Promise((resolve, reject) => {
-            (0, fs_1.readFile)(this.path, (err, data) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(data);
-            });
-        });
-    }
-}
-exports.FileDataProvider = FileDataProvider;

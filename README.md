@@ -94,6 +94,8 @@ const gameDataFactory = await loadFromFile(provider);
 
 Use `WebFileDataProvider` to directly work with the `File` provided by the provided by the browser on picking a file. Or use cross-env `DataProviders` like `BufferDataProvider` if you already have the file `Buffer` in memory.
 
+> If using TypeScript, your module resolution should be the newer `Node16` or `NodeNext` when trying to import `parser/web`.
+
 ```ts
 import { WebFileDataProvider } from '@genshin-toolkit/parser/web';
 

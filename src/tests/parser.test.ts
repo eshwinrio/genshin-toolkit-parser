@@ -3,8 +3,9 @@ import assert from "node:assert";
 import { after, before, describe, it } from "node:test";
 import { tmpdir } from "os";
 import { sep } from "path";
-import { BufferDataProvider, FileDataProvider } from "../lib/data-provider";
+import { BufferDataProvider } from "../lib/data-provider";
 import { loadFromHar } from "../lib/parser";
+import { FileDataProvider } from "lib/data-provider-node";
 
 describe(
     "DataProvider tests for HAR",

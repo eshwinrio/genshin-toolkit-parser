@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { DataProvider } from '../../lib/data-provider';
+import { DataProvider } from '../lib/data-provider';
 /**
  * Data provider that loads data from a File object using FileReader API.
  */
