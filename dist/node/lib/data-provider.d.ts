@@ -24,11 +24,3 @@ export declare class BufferDataProvider implements DataProvider {
     constructor(buffer: Buffer);
     load(): Promise<Buffer>;
 }
-/**
- * Data provider that loads data from a HAR file.
- */
-export declare class FileDataProvider implements DataProvider {
-    private readonly path;
-    constructor(path: string);
-    load(): Promise<Buffer>;
-}

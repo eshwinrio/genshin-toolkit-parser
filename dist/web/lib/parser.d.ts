@@ -1,5 +1,5 @@
-import { GameData } from "./gamedata-schema";
 import { DataProvider } from "./data-provider";
+import { GameData } from "./gamedata-schema";
 export declare const GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api";
 export declare function loadFromHar(source: DataProvider): Promise<GameData>;
 /**

@@ -1,5 +1,3 @@
-import { readFile } from "fs";
-
 /**
  * Interface for data provider.
  */
@@ -27,22 +25,5 @@ export class BufferDataProvider implements DataProvider {
     constructor(private readonly buffer: Buffer) { }
     load() {
         return Promise.resolve(this.buffer);
-    }
-}
-
-/**
- * Data provider that loads data from a file.
- */
-export class FileDataProvider implements DataProvider {
-    constructor(private readonly path: string) { }
-    load() {
-        return new Promise<Buffer>((resolve, reject) => {
-            readFile(this.path, (err, data) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(data);
-            });
-        });
     }
 }
