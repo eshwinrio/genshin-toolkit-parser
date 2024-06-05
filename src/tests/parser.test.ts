@@ -1,39 +1,56 @@
-import { readFile } from "fs";
-import test, { describe } from "node:test";
-import { BufferDataProvider, FileDataProvider, loadFromHar } from "../lib/parser";
+import { mkdtemp, readFile, rm } from "fs";
+import assert from "node:assert";
+import { after, before, describe, it } from "node:test";
+import { tmpdir } from "os";
+import { sep } from "path";
+import { BufferDataProvider } from "../lib/data-provider";
+import { loadFromHar } from "../lib/parser";
+import { FileDataProvider } from "../lib/data-provider-node";
 
 describe(
     "DataProvider tests for HAR",
     { concurrency: true, skip: !process.env.FS_PATH_TO_HAR },
     (_suiteContext) => {
-        
-        test("FileDataProvider", (_testContext) => {
-            const provider = new FileDataProvider(process.env.FS_PATH_TO_HAR!);
-            loadFromHar(provider).then(data => {
-                console.table(data.avatars.map(avatar => ({
-                    character: avatar.name,
-                    level: avatar.level,
-                    weapon: `${avatar.weapon?.type_name}/${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
-                    friendship: `lv${avatar.fetter}`
-                })));
+
+        let temporaryDirectory: string;
+
+        before(async (_testContext) => {
+            process.env.NODE_ENV = "test";
+            return new Promise((resolve, reject) => {
+                mkdtemp(`${tmpdir()}${sep}`, (err, folder) => {
+                    if (err) reject(err);
+                    temporaryDirectory = folder;
+                    resolve(true);
+                });
+            })
+        });
+
+        after(async (_testContext) => {
+            await new Promise((resolve, reject) => {
+                rm(temporaryDirectory, { recursive: true, force: true }, (err) => {
+                    if (err) reject(err);
+                    resolve(true);
+                });
             });
         });
 
-        test("BufferDataProvider", (_testContext) => {
-            readFile(process.env.FS_PATH_TO_HAR!, (err, data) => {
-                if (err) {
-                    throw err;
-                }
-                const bufferDataProvider = new BufferDataProvider(data);
-                loadFromHar(bufferDataProvider).then(data => {
-                    console.table(data.avatars.map(avatar => ({
-                        character: avatar.name,
-                        level: avatar.level,
-                        weapon: `${avatar.weapon?.type_name}/${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
-                        friendship: `lv${avatar.fetter}`
-                    })));
-                })
+        it("FileDataProvider", async (_testContext) => {
+            const provider = new FileDataProvider(process.env.FS_PATH_TO_HAR!);
+            const gameData = await loadFromHar(provider);
+            assert.ok(gameData);
+        });
+
+        it("BufferDataProvider", (_testContext) => {
+            return new Promise((resolve, reject) => {
+                readFile(process.env.FS_PATH_TO_HAR!, (err, data) => {
+                    if (err) reject(err);
+                    const provider = new BufferDataProvider(data);
+                    loadFromHar(provider).then(gameData => {
+                        assert.ok(gameData);
+                        resolve();
+                    });
+                });
             });
         });
     }
-);
+)

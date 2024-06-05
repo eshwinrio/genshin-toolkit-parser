@@ -12,80 +12,106 @@ The current version has support for extracting game data from a HAR file capture
 > - [Mozilla Firefox](https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-troubleshoot-network-trace#mozilla-firefox)
 > - [Safari](https://learn.microsoft.com/en-us/azure/azure-web-pubsub/howto-troubleshoot-network-trace#safari)
 
-Parsing the HAR is as simple as reading the file itself.
+### Importing modules
+
+Use core imports for node and `web` for web environments
+
+```ts
+// For node environment
+import { DataProvider } from "@genshin-toolkit/parser";
+
+// For web environments
+import { DataProvider } from "@genshin-toolkit/parser/web";
+```
 
 ### Create a new `DataProvider` instance.
 
-There are 2 data providers for specific use cases:
+There are data provider classes for specific use cases, for *Node* and for *Web*:
 
-- `FileDataProvider` This is the provider you'll be using if you want to skip the hassle of reading the file yourself and passing in the buffer to the `DataProvider`.
+#### Cross-environment
 - `BufferDataProvider` If you have the HAR `Buffer` at hand, you can use this `DataProvider` instead.
+- `StringDataProvider` Reads data from raw `String`.
+
+#### Node only
+- `FileDataProvider` This is the provider you'll be using if you want to skip the hassle of reading the file yourself and passing in the buffer to the `DataProvider`.
+
+#### Web only
+- `WebFileDataProvider` Alternate `DataProvider` for `FileDataProvider` to be used in browsers.
 
   ```ts
-  import { Parser } from "@genshin-toolkit/parser";
+  import {
+    BufferDataProvider,
+    FileDataProvider,
+    loadFromHar,
+  } from "@genshin-toolkit/parser";
 
-  const fileDataProvider = new Parser.FileDataProvider("..path-to.har");
-  const bufferDataProvider = new Parser.BufferDataProvider(buffer);
+  const fileDataProvider = new FileDataProvider("..path-to.har");
+  // or
+  const bufferDataProvider = new BufferDataProvider(buffer);
+  // or
+  const stringDataProvider = new StringDataProvider("{...string_data...}");
   ```
 
-2. Pass the `DataProvider` instance to the `loadFromHar` function which returns a complete `GameData` model compiled by `zod`.
+2. Call `loadFromHar` to extract and parse game data from a HAR file.
 
-   ```ts
-   loadFromHar(provider).then((data) => {
-     console.table(
-       data.avatars.map((avatar) => ({
-         character: avatar.name,
-         level: avatar.level,
-         weapon: `${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
-         friendship: `lv${avatar.fetter}`,
-       }))
-     );
-   });
-   ```
+    ```ts
+    const gameData = await loadFromHar(provider);
+    
+    // Tabular display (example)
+    console.table(gameData.avatars.map(avatar => ({
+        character: avatar.name,
+        level: avatar.level,
+        weapon: `${avatar.weapon?.type_name}/${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
+        friendship: `lv${avatar.fetter}`
+    })));
+    ```
 
 ## Examples
 
-Below are the examples of loading data from HAR for two different use-cases:
+Below are the examples of loading data from HAR for two different use-cases (Use `async` function wrapper if using `await`):
 
 ### Parsing data from a local file
 
 ```ts
-import { Parser } from "@genshin-toolkit/parser";
+import { FileDataProvider, loadFromHar } from "@genshin-toolkit/parser";
 
-const provider = new Parser.FileDataProvider("/home/path/to.har");
-Parser.loadFromHar(provider).then((data) => {
-  console.table(
-    data.avatars.map((avatar) => ({
-      character: avatar.name,
-      level: avatar.level,
-      weapon: `${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
-      friendship: `lv${avatar.fetter}`,
-    }))
-  );
-});
+const provider = new FileDataProvider("/home/path/to.har");
+const gameDataFactory = await loadFromHar(provider);
 ```
 
-### Parsing data from a local file (2)
+### Parsing game data from a game data file
 
-If you want to do some preprocessing on the file buffer, use this approach:
+If you want to parse the game data (data parsed from HAR with `loadFromHar` and saved on disk or a `GameData` schema compatible json file)
 
 ```ts
-import { Parser } from "@genshin-toolkit/parser";
+import { FileDataProvider, loadFromFile } from "@genshin-toolkit/parser";
 
-readFile("/home/path/to.har", (err, data) => {
-  if (err) throw err;
+const provider = new FileDataProvider("/home/path/gamedata.json");
+const gameDataFactory = await loadFromFile(provider);
+```
 
-  const bufferDataProvider = new BufferDataProvider(data);
-  
-  loadFromHar(bufferDataProvider).then((data) => {
-    console.table(
-      data.avatars.map((avatar) => ({
-        character: avatar.name,
-        level: avatar.level,
-        weapon: `${avatar.weapon?.name} - lv${avatar.weapon?.level}`,
-        friendship: `lv${avatar.fetter}`,
-      }))
-    );
-  });
+### Parsing on the web
+
+Use `WebFileDataProvider` to directly work with the `File` provided by the provided by the browser on picking a file. Or use cross-env `DataProviders` like `BufferDataProvider` if you already have the file `Buffer` in memory.
+
+> If using TypeScript, your module resolution should be the newer `Node16` or `NodeNext` when trying to import `parser/web`.
+
+```ts
+import { WebFileDataProvider } from '@genshin-toolkit/parser/web';
+
+document.getElementById('fileInput').addEventListener('change', async (event) => {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+        const file = input.files[0];
+        const provider = new WebFileDataProvider(file);
+
+        try {
+            const data = await provider.load();
+            // Parse with loadFromHar or loadFromFile here.
+            console.log('File data loaded:', data);
+        } catch (error) {
+            console.error('Error loading file:', error);
+        }
+    }
 });
 ```

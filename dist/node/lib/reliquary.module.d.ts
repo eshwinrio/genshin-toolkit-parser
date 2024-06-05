@@ -68,7 +68,6 @@ export declare const ReliquaryBase: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     name: string;
     pos: number;
-    rarity: number;
     set: {
         name: string;
         affixes: {
@@ -76,12 +75,12 @@ export declare const ReliquaryBase: z.ZodObject<{
             activation_number: number;
         }[];
     };
+    rarity: number;
     pos_name: string;
     icon?: string | undefined;
 }, {
     name: string;
     pos: number;
-    rarity: number;
     set: {
         name: string;
         affixes: {
@@ -89,6 +88,7 @@ export declare const ReliquaryBase: z.ZodObject<{
             activation_number: number;
         }[];
     };
+    rarity: number;
     pos_name: string;
     icon?: string | undefined;
 }>;
@@ -128,7 +128,6 @@ export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
 }>, "strip", z.ZodTypeAny, {
     name: string;
     pos: number;
-    rarity: number;
     set: {
         name: string;
         affixes: {
@@ -136,13 +135,13 @@ export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
             activation_number: number;
         }[];
     };
-    level: number;
+    rarity: number;
     pos_name: string;
+    level: number;
     icon?: string | undefined;
 }, {
     name: string;
     pos: number;
-    rarity: number;
     set: {
         name: string;
         affixes: {
@@ -150,6 +149,7 @@ export declare const Reliquary: z.ZodObject<z.objectUtil.extendShape<{
             activation_number: number;
         }[];
     };
+    rarity: number;
     pos_name: string;
     icon?: string | undefined;
     level?: number | undefined;

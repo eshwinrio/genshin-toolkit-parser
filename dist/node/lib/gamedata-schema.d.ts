@@ -126,7 +126,6 @@ export declare const GameData: z.ZodObject<{
         }>, "strip", z.ZodTypeAny, {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -134,13 +133,13 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
-            level: number;
+            rarity: number;
             pos_name: string;
+            level: number;
             icon?: string | undefined;
         }, {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -148,6 +147,7 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
+            rarity: number;
             pos_name: string;
             icon?: string | undefined;
             level?: number | undefined;
@@ -156,8 +156,9 @@ export declare const GameData: z.ZodObject<{
         external: z.ZodOptional<z.ZodAny>;
     }>, "strip", z.ZodTypeAny, {
         name: string;
-        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         rarity: number;
+        level: number;
+        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         constellations: {
             name: string;
             effect: string;
@@ -166,7 +167,6 @@ export declare const GameData: z.ZodObject<{
             icon?: string | undefined;
         }[];
         fetter: number;
-        level: number;
         actived_constellation_num: number;
         icon?: string | undefined;
         image?: string | undefined;
@@ -188,7 +188,6 @@ export declare const GameData: z.ZodObject<{
         reliquaries?: {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -196,15 +195,17 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
-            level: number;
+            rarity: number;
             pos_name: string;
+            level: number;
             icon?: string | undefined;
         }[] | undefined;
         external?: any;
     }, {
         name: string;
-        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         rarity: number;
+        level: number;
+        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         constellations: {
             name: string;
             effect: string;
@@ -213,7 +214,6 @@ export declare const GameData: z.ZodObject<{
             is_actived?: boolean | undefined;
         }[];
         fetter: number;
-        level: number;
         icon?: string | undefined;
         image?: string | undefined;
         costumes?: {
@@ -234,7 +234,6 @@ export declare const GameData: z.ZodObject<{
         reliquaries?: {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -242,6 +241,7 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
+            rarity: number;
             pos_name: string;
             icon?: string | undefined;
             level?: number | undefined;
@@ -259,8 +259,9 @@ export declare const GameData: z.ZodObject<{
     };
     avatars: {
         name: string;
-        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         rarity: number;
+        level: number;
+        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         constellations: {
             name: string;
             effect: string;
@@ -269,7 +270,6 @@ export declare const GameData: z.ZodObject<{
             icon?: string | undefined;
         }[];
         fetter: number;
-        level: number;
         actived_constellation_num: number;
         icon?: string | undefined;
         image?: string | undefined;
@@ -291,7 +291,6 @@ export declare const GameData: z.ZodObject<{
         reliquaries?: {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -299,8 +298,9 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
-            level: number;
+            rarity: number;
             pos_name: string;
+            level: number;
             icon?: string | undefined;
         }[] | undefined;
         external?: any;
@@ -315,8 +315,9 @@ export declare const GameData: z.ZodObject<{
     };
     avatars: {
         name: string;
-        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         rarity: number;
+        level: number;
+        element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
         constellations: {
             name: string;
             effect: string;
@@ -325,7 +326,6 @@ export declare const GameData: z.ZodObject<{
             is_actived?: boolean | undefined;
         }[];
         fetter: number;
-        level: number;
         icon?: string | undefined;
         image?: string | undefined;
         costumes?: {
@@ -346,7 +346,6 @@ export declare const GameData: z.ZodObject<{
         reliquaries?: {
             name: string;
             pos: number;
-            rarity: number;
             set: {
                 name: string;
                 affixes: {
@@ -354,6 +353,7 @@ export declare const GameData: z.ZodObject<{
                     activation_number: number;
                 }[];
             };
+            rarity: number;
             pos_name: string;
             icon?: string | undefined;
             level?: number | undefined;

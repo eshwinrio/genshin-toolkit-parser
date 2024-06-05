@@ -35,8 +35,8 @@ export declare const AvatarBase: z.ZodObject<{
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -51,8 +51,8 @@ export declare const AvatarBase: z.ZodObject<{
     }[] | undefined;
 }, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -173,7 +173,6 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
     }>, "strip", z.ZodTypeAny, {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -181,13 +180,13 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
                 activation_number: number;
             }[];
         };
-        level: number;
+        rarity: number;
         pos_name: string;
+        level: number;
         icon?: string | undefined;
     }, {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -195,6 +194,7 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
                 activation_number: number;
             }[];
         };
+        rarity: number;
         pos_name: string;
         icon?: string | undefined;
         level?: number | undefined;
@@ -203,8 +203,9 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
     external: z.ZodOptional<z.ZodAny>;
 }>, "strip", z.ZodTypeAny, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    level: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -213,7 +214,6 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
         icon?: string | undefined;
     }[];
     fetter: number;
-    level: number;
     actived_constellation_num: number;
     icon?: string | undefined;
     image?: string | undefined;
@@ -235,7 +235,6 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
     reliquaries?: {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -243,15 +242,17 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
                 activation_number: number;
             }[];
         };
-        level: number;
+        rarity: number;
         pos_name: string;
+        level: number;
         icon?: string | undefined;
     }[] | undefined;
     external?: any;
 }, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    level: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -260,7 +261,6 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
         is_actived?: boolean | undefined;
     }[];
     fetter: number;
-    level: number;
     icon?: string | undefined;
     image?: string | undefined;
     costumes?: {
@@ -281,7 +281,6 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
     reliquaries?: {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -289,6 +288,7 @@ export declare const Avatar: z.ZodObject<z.objectUtil.extendShape<{
                 activation_number: number;
             }[];
         };
+        rarity: number;
         pos_name: string;
         icon?: string | undefined;
         level?: number | undefined;
@@ -403,7 +403,6 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
     }>, "strip", z.ZodTypeAny, {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -411,13 +410,13 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
                 activation_number: number;
             }[];
         };
-        level: number;
+        rarity: number;
         pos_name: string;
+        level: number;
         icon?: string | undefined;
     }, {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -425,6 +424,7 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
                 activation_number: number;
             }[];
         };
+        rarity: number;
         pos_name: string;
         icon?: string | undefined;
         level?: number | undefined;
@@ -433,8 +433,9 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
     external: z.ZodOptional<z.ZodAny>;
 }>, "strip", z.ZodTypeAny, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    level: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -443,7 +444,6 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
         icon?: string | undefined;
     }[];
     fetter: number;
-    level: number;
     actived_constellation_num: number;
     icon?: string | undefined;
     image?: string | undefined;
@@ -465,7 +465,6 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
     reliquaries?: {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -473,15 +472,17 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
                 activation_number: number;
             }[];
         };
-        level: number;
+        rarity: number;
         pos_name: string;
+        level: number;
         icon?: string | undefined;
     }[] | undefined;
     external?: any;
 }, {
     name: string;
-    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     rarity: number;
+    level: number;
+    element: "Anemo" | "Cryo" | "Dendro" | "Electro" | "Geo" | "Hydro" | "Pyro";
     constellations: {
         name: string;
         effect: string;
@@ -490,7 +491,6 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
         is_actived?: boolean | undefined;
     }[];
     fetter: number;
-    level: number;
     icon?: string | undefined;
     image?: string | undefined;
     costumes?: {
@@ -511,7 +511,6 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
     reliquaries?: {
         name: string;
         pos: number;
-        rarity: number;
         set: {
             name: string;
             affixes: {
@@ -519,6 +518,7 @@ export declare const AvatarList: z.ZodArray<z.ZodObject<z.objectUtil.extendShape
                 activation_number: number;
             }[];
         };
+        rarity: number;
         pos_name: string;
         icon?: string | undefined;
         level?: number | undefined;

@@ -1,4 +1,91 @@
 import { z } from "zod";
+export declare const NameValueSchema: z.ZodObject<{
+    name: z.ZodString;
+    value: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    value: string;
+}, {
+    name: string;
+    value: string;
+}>;
+export declare const HeaderSchema: z.ZodObject<{
+    name: z.ZodString;
+    value: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    value: string;
+}, {
+    name: string;
+    value: string;
+}>;
+export declare const CookieSchema: z.ZodObject<{
+    name: z.ZodString;
+    value: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    value: string;
+}, {
+    name: string;
+    value: string;
+}>;
+export declare const QueryStringSchema: z.ZodObject<{
+    name: z.ZodString;
+    value: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    value: string;
+}, {
+    name: string;
+    value: string;
+}>;
+export declare const NameVersionSchema: z.ZodObject<{
+    name: z.ZodString;
+    version: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    version: string;
+}, {
+    name: string;
+    version: string;
+}>;
+export declare const CreatorSchema: z.ZodObject<{
+    name: z.ZodString;
+    version: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    version: string;
+}, {
+    name: string;
+    version: string;
+}>;
+export declare const BrowserSchema: z.ZodObject<{
+    name: z.ZodString;
+    version: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    name: string;
+    version: string;
+}, {
+    name: string;
+    version: string;
+}>;
+export declare const PageTimingsSchema: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
+export declare const PageSchema: z.ZodObject<{
+    startedDateTime: z.ZodOptional<z.ZodString>;
+    id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
+    pageTimings: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+}, "strip", z.ZodTypeAny, {
+    startedDateTime?: string | undefined;
+    id?: string | undefined;
+    title?: string | undefined;
+    pageTimings?: {} | undefined;
+}, {
+    startedDateTime?: string | undefined;
+    id?: string | undefined;
+    title?: string | undefined;
+    pageTimings?: {} | undefined;
+}>;
 export declare const RequestSchema: z.ZodObject<{
     method: z.ZodOptional<z.ZodString>;
     url: z.ZodOptional<z.ZodString>;
@@ -7,31 +94,31 @@ export declare const RequestSchema: z.ZodObject<{
         name: z.ZodString;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         name: string;
+        value: string;
     }, {
-        value: string;
         name: string;
+        value: string;
     }>, "many">>;
     queryString: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         name: string;
+        value: string;
     }, {
-        value: string;
         name: string;
+        value: string;
     }>, "many">>;
     cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         name: string;
+        value: string;
     }, {
-        value: string;
         name: string;
+        value: string;
     }>, "many">>;
     headersSize: z.ZodOptional<z.ZodNumber>;
     bodySize: z.ZodOptional<z.ZodNumber>;
@@ -40,16 +127,16 @@ export declare const RequestSchema: z.ZodObject<{
     url?: string | undefined;
     httpVersion?: string | undefined;
     headers?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     queryString?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     cookies?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     headersSize?: number | undefined;
     bodySize?: number | undefined;
@@ -58,16 +145,16 @@ export declare const RequestSchema: z.ZodObject<{
     url?: string | undefined;
     httpVersion?: string | undefined;
     headers?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     queryString?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     cookies?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     headersSize?: number | undefined;
     bodySize?: number | undefined;
@@ -80,21 +167,21 @@ export declare const ResponseSchema: z.ZodObject<{
         name: z.ZodString;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         name: string;
+        value: string;
     }, {
-        value: string;
         name: string;
+        value: string;
     }>, "many">>;
     cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         name: string;
+        value: string;
     }, {
-        value: string;
         name: string;
+        value: string;
     }>, "many">>;
     content: z.ZodOptional<z.ZodObject<{
         size: z.ZodNumber;
@@ -119,12 +206,12 @@ export declare const ResponseSchema: z.ZodObject<{
     status?: number | undefined;
     httpVersion?: string | undefined;
     headers?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     cookies?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     headersSize?: number | undefined;
     bodySize?: number | undefined;
@@ -140,12 +227,12 @@ export declare const ResponseSchema: z.ZodObject<{
     status?: number | undefined;
     httpVersion?: string | undefined;
     headers?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     cookies?: {
-        value: string;
         name: string;
+        value: string;
     }[] | undefined;
     headersSize?: number | undefined;
     bodySize?: number | undefined;
@@ -169,31 +256,31 @@ export declare const HarEntry: z.ZodObject<{
             name: z.ZodString;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             name: string;
+            value: string;
         }, {
-            value: string;
             name: string;
+            value: string;
         }>, "many">>;
         queryString: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             name: string;
+            value: string;
         }, {
-            value: string;
             name: string;
+            value: string;
         }>, "many">>;
         cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             name: string;
+            value: string;
         }, {
-            value: string;
             name: string;
+            value: string;
         }>, "many">>;
         headersSize: z.ZodOptional<z.ZodNumber>;
         bodySize: z.ZodOptional<z.ZodNumber>;
@@ -202,16 +289,16 @@ export declare const HarEntry: z.ZodObject<{
         url?: string | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         queryString?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -220,16 +307,16 @@ export declare const HarEntry: z.ZodObject<{
         url?: string | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         queryString?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -242,21 +329,21 @@ export declare const HarEntry: z.ZodObject<{
             name: z.ZodString;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             name: string;
+            value: string;
         }, {
-            value: string;
             name: string;
+            value: string;
         }>, "many">>;
         cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             value: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            value: string;
             name: string;
+            value: string;
         }, {
-            value: string;
             name: string;
+            value: string;
         }>, "many">>;
         content: z.ZodOptional<z.ZodObject<{
             size: z.ZodNumber;
@@ -281,12 +368,12 @@ export declare const HarEntry: z.ZodObject<{
         status?: number | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -302,12 +389,12 @@ export declare const HarEntry: z.ZodObject<{
         status?: number | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -332,16 +419,16 @@ export declare const HarEntry: z.ZodObject<{
         url?: string | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         queryString?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -350,12 +437,12 @@ export declare const HarEntry: z.ZodObject<{
         status?: number | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -380,16 +467,16 @@ export declare const HarEntry: z.ZodObject<{
         url?: string | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         queryString?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -398,12 +485,12 @@ export declare const HarEntry: z.ZodObject<{
         status?: number | undefined;
         httpVersion?: string | undefined;
         headers?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         cookies?: {
-            value: string;
             name: string;
+            value: string;
         }[] | undefined;
         headersSize?: number | undefined;
         bodySize?: number | undefined;
@@ -425,24 +512,24 @@ export declare const HAR: z.ZodObject<{
     log: z.ZodOptional<z.ZodObject<{
         version: z.ZodOptional<z.ZodString>;
         creator: z.ZodOptional<z.ZodObject<{
-            name: z.ZodOptional<z.ZodString>;
-            version: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            version: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         }, {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         }>>;
         browser: z.ZodOptional<z.ZodObject<{
-            name: z.ZodOptional<z.ZodString>;
-            version: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            version: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         }, {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         }>>;
         pages: z.ZodOptional<z.ZodArray<z.ZodObject<{
             startedDateTime: z.ZodOptional<z.ZodString>;
@@ -450,13 +537,13 @@ export declare const HAR: z.ZodObject<{
             title: z.ZodOptional<z.ZodString>;
             pageTimings: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
         }, "strip", z.ZodTypeAny, {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }, {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }>, "many">>;
@@ -471,31 +558,31 @@ export declare const HAR: z.ZodObject<{
                     name: z.ZodString;
                     value: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value: string;
                     name: string;
+                    value: string;
                 }, {
-                    value: string;
                     name: string;
+                    value: string;
                 }>, "many">>;
                 queryString: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     name: z.ZodString;
                     value: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value: string;
                     name: string;
+                    value: string;
                 }, {
-                    value: string;
                     name: string;
+                    value: string;
                 }>, "many">>;
                 cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     name: z.ZodString;
                     value: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value: string;
                     name: string;
+                    value: string;
                 }, {
-                    value: string;
                     name: string;
+                    value: string;
                 }>, "many">>;
                 headersSize: z.ZodOptional<z.ZodNumber>;
                 bodySize: z.ZodOptional<z.ZodNumber>;
@@ -504,16 +591,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -522,16 +609,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -544,21 +631,21 @@ export declare const HAR: z.ZodObject<{
                     name: z.ZodString;
                     value: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value: string;
                     name: string;
+                    value: string;
                 }, {
-                    value: string;
                     name: string;
+                    value: string;
                 }>, "many">>;
                 cookies: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     name: z.ZodString;
                     value: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value: string;
                     name: string;
+                    value: string;
                 }, {
-                    value: string;
                     name: string;
+                    value: string;
                 }>, "many">>;
                 content: z.ZodOptional<z.ZodObject<{
                     size: z.ZodNumber;
@@ -583,12 +670,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -604,12 +691,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -634,16 +721,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -652,12 +739,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -682,16 +769,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -700,12 +787,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -733,16 +820,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -751,12 +838,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -776,16 +863,16 @@ export declare const HAR: z.ZodObject<{
         }[] | undefined;
         version?: string | undefined;
         creator?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         browser?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         pages?: {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }[] | undefined;
@@ -799,16 +886,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -817,12 +904,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -842,16 +929,16 @@ export declare const HAR: z.ZodObject<{
         }[] | undefined;
         version?: string | undefined;
         creator?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         browser?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         pages?: {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }[] | undefined;
@@ -867,16 +954,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -885,12 +972,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -910,16 +997,16 @@ export declare const HAR: z.ZodObject<{
         }[] | undefined;
         version?: string | undefined;
         creator?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         browser?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         pages?: {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }[] | undefined;
@@ -935,16 +1022,16 @@ export declare const HAR: z.ZodObject<{
                 url?: string | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 queryString?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -953,12 +1040,12 @@ export declare const HAR: z.ZodObject<{
                 status?: number | undefined;
                 httpVersion?: string | undefined;
                 headers?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 cookies?: {
-                    value: string;
                     name: string;
+                    value: string;
                 }[] | undefined;
                 headersSize?: number | undefined;
                 bodySize?: number | undefined;
@@ -978,22 +1065,30 @@ export declare const HAR: z.ZodObject<{
         }[] | undefined;
         version?: string | undefined;
         creator?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         browser?: {
-            name?: string | undefined;
-            version?: string | undefined;
+            name: string;
+            version: string;
         } | undefined;
         pages?: {
-            id?: string | undefined;
             startedDateTime?: string | undefined;
+            id?: string | undefined;
             title?: string | undefined;
             pageTimings?: {} | undefined;
         }[] | undefined;
         comment?: string | undefined;
     } | undefined;
 }>;
+export type KeyValueSchema = z.infer<typeof NameValueSchema>;
+export type HeaderSchema = z.infer<typeof HeaderSchema>;
+export type CookieSchema = z.infer<typeof CookieSchema>;
+export type QueryStringSchema = z.infer<typeof QueryStringSchema>;
+export type PageTimingsSchema = z.infer<typeof PageTimingsSchema>;
+export type PageSchema = z.infer<typeof PageSchema>;
+export type CreatorSchema = z.infer<typeof CreatorSchema>;
+export type BrowserSchema = z.infer<typeof BrowserSchema>;
 export type RequestSchema = z.infer<typeof RequestSchema>;
 export type ResponseSchema = z.infer<typeof ResponseSchema>;
 export type HarEntry = z.infer<typeof HarEntry>;
