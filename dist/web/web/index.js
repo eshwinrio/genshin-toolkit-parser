@@ -27,11 +27,11 @@ exports.WebFileDataProvider = exports.loadFromHar = exports.loadFromFile = expor
 var data_provider_1 = require("../lib/data-provider");
 Object.defineProperty(exports, "BufferDataProvider", { enumerable: true, get: function () { return data_provider_1.BufferDataProvider; } });
 Object.defineProperty(exports, "StringDataProvider", { enumerable: true, get: function () { return data_provider_1.StringDataProvider; } });
-var gamedata_schema_1 = require("../lib/gamedata-schema");
-Object.defineProperty(exports, "GameData", { enumerable: true, get: function () { return gamedata_schema_1.GameData; } });
-exports.Har = __importStar(require("../lib/har.module"));
-var mhyresponse_module_1 = require("../lib/mhyresponse.module");
-Object.defineProperty(exports, "MhyResponse", { enumerable: true, get: function () { return mhyresponse_module_1.MhyResponse; } });
+var gamedata_1 = require("../schemas/gamedata");
+Object.defineProperty(exports, "GameData", { enumerable: true, get: function () { return gamedata_1.GameData; } });
+exports.Har = __importStar(require("../schemas/har"));
+var mhyresponse_1 = require("../schemas/mhyresponse");
+Object.defineProperty(exports, "MhyResponse", { enumerable: true, get: function () { return mhyresponse_1.MhyResponse; } });
 var parser_1 = require("../lib/parser");
 Object.defineProperty(exports, "GAME_RECORD_API_BASEURL", { enumerable: true, get: function () { return parser_1.GAME_RECORD_API_BASEURL; } });
 Object.defineProperty(exports, "loadFromFile", { enumerable: true, get: function () { return parser_1.loadFromFile; } });

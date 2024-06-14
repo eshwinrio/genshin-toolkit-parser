@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { Constellation } from "./constellation.module";
-import { Costume } from "./costume.module";
-import { Element } from "./element.module";
-import { Reliquary } from "./reliquary.module";
-import { Weapon } from "./weapon.module";
+import { Constellation } from "./constellation";
+import { Costume } from "./costume";
+import { Element } from "./element";
+import { Reliquary } from "./reliquary";
+import { Weapon } from "./weapon";
 
 export const AvatarBase = z.object({
   image: z.string().url().optional(),

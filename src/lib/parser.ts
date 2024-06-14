@@ -1,9 +1,9 @@
-import { AvatarList } from "./avatar.module";
+import { AvatarList } from "../schemas/avatar";
 import { DataProvider } from "./data-provider";
-import { GameData } from "./gamedata-schema";
-import { HAR } from "./har.module";
-import { MhyResponse } from "./mhyresponse.module";
-import { Role } from "./role.module";
+import { GameData } from "../schemas/gamedata";
+import { HAR } from "../schemas/har";
+import { MhyResponse } from "../schemas/mhyresponse";
+import { Role } from "../schemas/role";
 
 export const GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api";
 

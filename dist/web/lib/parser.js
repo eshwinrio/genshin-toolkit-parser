@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadFromFile = exports.loadFromHar = exports.GAME_RECORD_API_BASEURL = void 0;
-const avatar_module_1 = require("./avatar.module");
-const gamedata_schema_1 = require("./gamedata-schema");
-const har_module_1 = require("./har.module");
-const mhyresponse_module_1 = require("./mhyresponse.module");
-const role_module_1 = require("./role.module");
+const avatar_1 = require("../schemas/avatar");
+const gamedata_1 = require("../schemas/gamedata");
+const har_1 = require("../schemas/har");
+const mhyresponse_1 = require("../schemas/mhyresponse");
+const role_1 = require("../schemas/role");
 exports.GAME_RECORD_API_BASEURL = "https://bbs-api-os.hoyolab.com/game_record/genshin/api";
 async function loadFromHar(source) {
     // Stage 1: Parse HAR file
     const buffer = await source.load();
     const harData = JSON.parse(buffer.toString('utf-8'));
-    const parsedHar = har_module_1.HAR.parse(harData);
+    const parsedHar = har_1.HAR.parse(harData);
     // Stage 2: Filter entries
     if (!parsedHar.log) {
         throw new Error("No http log found in HAR file");
@@ -20,16 +20,16 @@ async function loadFromHar(source) {
     // Stage 3: Extract traveler info
     const basicInfoEntry = filteredEntries.find((entry) => entry.request?.url?.startsWith(exports.GAME_RECORD_API_BASEURL + "/index"));
     const rawTravelerInfo = basicInfoEntry?.response?.content?.text
-        ? mhyresponse_module_1.MhyResponse.parse(JSON.parse(basicInfoEntry.response.content.text))
+        ? mhyresponse_1.MhyResponse.parse(JSON.parse(basicInfoEntry.response.content.text))
         : null;
-    const role = rawTravelerInfo ? role_module_1.Role.parse(rawTravelerInfo.data.role) : null;
+    const role = rawTravelerInfo ? role_1.Role.parse(rawTravelerInfo.data.role) : null;
     // Stage 4: Extract character data
     const characterData = filteredEntries.find((entry) => entry.request?.url?.startsWith(exports.GAME_RECORD_API_BASEURL + "/character"));
     const rawCharacterData = characterData?.response?.content?.text
-        ? mhyresponse_module_1.MhyResponse.parse(JSON.parse(characterData.response.content.text))
+        ? mhyresponse_1.MhyResponse.parse(JSON.parse(characterData.response.content.text))
         : null;
-    const avatars = rawCharacterData ? avatar_module_1.AvatarList.parse(rawCharacterData.data.avatars) : null;
-    return gamedata_schema_1.GameData.parse({ role, avatars });
+    const avatars = rawCharacterData ? avatar_1.AvatarList.parse(rawCharacterData.data.avatars) : null;
+    return gamedata_1.GameData.parse({ role, avatars });
 }
 exports.loadFromHar = loadFromHar;
 /**
@@ -39,6 +39,6 @@ exports.loadFromHar = loadFromHar;
 async function loadFromFile(source) {
     const buffer = await source.load();
     const gameData = JSON.parse(buffer.toString('utf-8'));
-    return gamedata_schema_1.GameData.parse(gameData);
+    return gamedata_1.GameData.parse(gameData);
 }
 exports.loadFromFile = loadFromFile;
